@@ -1,4 +1,4 @@
-package hackerrank.implementation;
+package hackerrank.middle.implementation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
