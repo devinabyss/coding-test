@@ -1,4 +1,4 @@
-package hackerrank.easy.warmup;
+package hackerrank.easy;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
+ * https://www.hackerrank.com/challenges/a-very-big-sum/problem
  * Created by HK on 2018-04-11.
  */
 public class VeryBigSum {

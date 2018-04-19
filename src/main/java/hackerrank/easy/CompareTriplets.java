@@ -1,4 +1,4 @@
-package hackerrank.easy.warmup;
+package hackerrank.easy;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
+ * https://www.hackerrank.com/challenges/compare-the-triplets/problem
  * Created by HK on 2018-04-11.
  */
 public class CompareTriplets {

@@ -1,4 +1,4 @@
-package hackerrank.easy.warmup;
+package hackerrank.easy;
 
 
 import java.io.BufferedWriter;
