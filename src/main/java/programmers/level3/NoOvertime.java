@@ -7,6 +7,9 @@ import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
+ * https://programmers.co.kr/learn/challenge_codes/145
+ *
+ * 해석 - 작업량이
  * Created by HK on 2018-04-11.
  */
 public class NoOvertime {
@@ -17,7 +20,6 @@ public class NoOvertime {
         // 야근 지수를 최소화 하였을 때의 야근 지수는 몇일까요?
 
         for (int i = 0; no > 0; i++) {
-
             if (i == 0 && (Arrays.stream(works).max().getAsInt() == works[i])) {
                 works[i]--;
                 no--;
