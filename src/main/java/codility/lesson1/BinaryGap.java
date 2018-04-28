@@ -1,4 +1,4 @@
-package codility.level1;
+package codility.lesson1;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

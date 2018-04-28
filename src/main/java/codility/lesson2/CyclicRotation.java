@@ -1,4 +1,4 @@
-package codility.level2;
+package codility.lesson2;
 
 import java.util.ArrayList;
 import java.util.Arrays;

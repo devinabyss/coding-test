@@ -1,9 +1,17 @@
 package programmers.level2;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Arrays;
+
 /**
  * Created by HK on 2018-04-19.
  */
 public class ProductMatrix {
+
+    private final Logger logger = LoggerFactory.getLogger(ProductMatrix.class);
+
     public int[][] productMatrix(int[][] A, int[][] B) {
 
 
@@ -44,18 +52,53 @@ public class ProductMatrix {
         return answer;
     }
 
+    public int[][] solution(int[][] A, int[][] B) {
+
+
+
+
+        int[][] result = new int[A.length][B.length];
+
+
+
+        for (int i = 0; i < A.length; i ++) {
+
+            for (int j= 0; j < B[0].length; j++) {
+                //logger.info("## I : {} - {}, J : {} - {}", i ,A[i], j, B[j]);
+
+                for (int k = 0; k < B.length; k++) {
+                    result[i][j] = A[i][k] * B[k][j];
+                }
+
+
+            }
+
+
+        }
+
+
+        for (int i = 0; i < result.length; i++) {
+            logger.info(Arrays.toString(result[i]));
+        }
+
+
+        return result;
+    }
+
     public static void main(String[] args) {
         ProductMatrix c = new ProductMatrix();
-        int[][] a = {{1, 2}, {2, 3}};
-        int[][] b = {{3, 4}, {5, 6}};
+//        int[][] a = {{2}, {5}, {10}, {8}, {4}};
+//        int[][] b = {{7}};
 
+        int [][] a = {{1,2,},{3,4}};
+        int [][] b = {{3,4,},{5,6}};
 
 //        System.out.println(a.length);
 //        for (int i = 0; i < a.length; i++) {
 //            System.out.println(a[i].length);
 //        }
         // 아래는 테스트로 출력해 보기 위한 코드입니다.
-        System.out.println("행렬의 곱셈 : " + c.productMatrix(a, b));
+        System.out.println("행렬의 곱셈 : " + Arrays.toString(c.solution(a, b)));
     }
 
 }
