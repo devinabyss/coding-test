@@ -15,7 +15,7 @@ public class CountDiv {
     }
 
     public static void main(String[] args) {
-        //int[] input = { 6, 11, 2};zz
+        //int[] input = { 6, 11, 2};zzz
         //int[] input = { 1, 5, 3};
         //int[] input = {8, 28, 7};
         int[] input = {11, 345, 17};
