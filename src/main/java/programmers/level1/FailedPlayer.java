@@ -1,6 +1,8 @@
 package programmers.level1;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * 문제 : 완주하지 못한 선수
@@ -34,12 +36,50 @@ public class FailedPlayer {
         return participant[participant.length - 1];
     }
 
+    public static String recursionMain(String[] participant, String[] completion){
+        Arrays.sort(participant);
+        Arrays.sort(completion);
+
+        return recursion(participant, completion, 0);
+
+    }
+
+    public static String recursion(String[] participant, String[] completion, int index) {
+
+        if (completion.length == index) {
+            return participant[index];
+        }
+
+        boolean isSame = participant[index].equals( completion[index]) ;
+
+        return isSame ? recursion(participant, completion, index+1) : participant[index];
+    }
+
+    public static String[] getCompletion(int length) {
+
+
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < length; i++) {
+            list.add(String.valueOf(i));
+        }
+
+        return list.stream().map(String::valueOf).toArray(String[]::new);
+    }
+
     public static void main(String[] args) {
 
-        String[] participant = {"leo", "kiki", "eden"};
-        String[] completed = {"leo", "kiki"};
+//        String[] participant = {"leo", "kiki", "eden"};
+//        String[] completed = {"leo", "kiki"};
 
-        String failed = solution(participant, completed);
+        List<String> a = new ArrayList<String>(Arrays.asList(getCompletion(100)));
+
+        a.add("AA");
+
+        System.out.println(a.toString());
+
+        String[] completed = getCompletion(1000);
+        String[] participant = a.toArray(new String[1001]);
+        String failed = recursionMain(participant, completed);
 
         System.out.println("Failed Player : " + failed);
     }
