@@ -50,9 +50,18 @@ public class FailedPlayer {
             return participant[index];
         }
 
+
         boolean isSame = participant[index].equals( completion[index]) ;
 
-        return isSame ? recursion(participant, completion, index+1) : participant[index];
+        if (index == 100) {
+            throw new RuntimeException("AA");
+        }
+
+//        if (isSame){
+//            throw new RuntimeException("AA");
+//        }
+
+        return isSame ? recursion(participant, completion, ++index ) : participant[index];
     }
 
     public static String[] getCompletion(int length) {
@@ -71,7 +80,7 @@ public class FailedPlayer {
 //        String[] participant = {"leo", "kiki", "eden"};
 //        String[] completed = {"leo", "kiki"};
 
-        List<String> a = new ArrayList<String>(Arrays.asList(getCompletion(100)));
+        List<String> a = new ArrayList<String>(Arrays.asList(getCompletion(1000)));
 
         a.add("AA");
 
@@ -79,6 +88,8 @@ public class FailedPlayer {
 
         String[] completed = getCompletion(1000);
         String[] participant = a.toArray(new String[1001]);
+        System.out.println("## pa : " + Arrays.toString(participant));
+
         String failed = recursionMain(participant, completed);
 
         System.out.println("Failed Player : " + failed);
