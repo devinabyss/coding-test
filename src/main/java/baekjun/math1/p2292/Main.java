@@ -4,45 +4,61 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static int soleve(int input){
+    public static int soleve(int input) {
 
         int max = 1;
+        int move = 0;
+        int edge = 6;
+        int append = 1;
+        int acumulated = 0;
+
+        for (int i = 0; max <= input; i++) {
+            acumulated += i;
+            int curMax = Math.max(acumulated * edge, 1) + append; // layer max value
+            //int curCount = i == 0 ? append : i * edge; // layer total count
+            int innerMove = (curMax - input) % ((i == 0) ? 1 : i);
+
+            move = i + innerMove + (i == 0 ? 0 : append);
+            max = curMax;
+            //System.out.println(input + " " + curMax + " " + innerMove + " " + move + " " + max);
+        }
+
+        return move;
+    }
+
+    public static int solve(int input) {
+
+        int max = 0;
         int count = 0;
-        int gop = 0;
-
-
-        for (int i = 0; max <= input; i++ ){
-
-
-
-
-
+        for (int i = count; input > max; i++) {
+            max = max(i);
+            count++;
         }
 
         return count;
+    }
+
+    public static int max(int a) {
+        if (a == 0)
+            return 1;
+        else
+            return max(a - 1) + a * 6;
     }
 
 
     public static void main(String[] args) {
 
 
+        Scanner scanner = new Scanner(System.in);
 
-//        Scanner scanner = new Scanner(System.in);
+        int input = scanner.nextInt();
+        System.out.println(solve(input));
+
+//        int[] inputs = new int[]{13, 25, 58};
 //
-//        int input = scanner.nextInt();
-//        1
-//        2-7 6 -> 2nd ->  2x1 +1
-//        8-19 12 -> 3rd ->  9 11 13 15 17 19
-//        20-37 18 -> 4th
-//        38-61 24
-
-        //System.out.println(scope);
-
-        int[] inputs = {13, 25, 39};
-
-        for(int input : inputs) {
-            System.out.println(soleve(input));
-        }
+//        for(int input : inputs) {
+//            System.out.println(solve(input));
+//        }
 
     }
 }
