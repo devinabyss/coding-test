@@ -12,6 +12,7 @@
     <properties>
         <version.logback>1.2.3</version.logback>
         <version.slf4j>1.7.25</version.slf4j>
+        <version.lombok>1.18.12</version.lombok>
         <version.maven-compiler-plugin>3.6.1</version.maven-compiler-plugin>
     </properties>
 
@@ -21,6 +22,7 @@
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
             </resource>
+
         </resources>
         <plugins>
             <plugin>
@@ -36,6 +38,16 @@
         </plugins>
     </build>
     <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${version.lombok}</version>
+        </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
