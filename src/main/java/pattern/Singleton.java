@@ -1,6 +1,9 @@
 package pattern;
 
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Assert;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
@@ -27,6 +30,13 @@ public class Singleton {
     }
 
     public static Singleton getInstanceWithConcurrencyNestedSyncrhronizedCheck() {
+//        if (singleton == null) {
+//
+//            synchronized (Singleton.class) {
+//                if (singleton == null)
+//                    singleton = new Singleton();
+//            }
+//        }
         singleton = Optional.ofNullable(singleton).orElseGet(
                 () -> {
                     synchronized (Singleton.class) {
@@ -38,6 +48,8 @@ public class Singleton {
 
     public static synchronized Singleton getInstanceWithConcurrencyAvoidWholeSynchronized() {
         singleton = Optional.ofNullable(singleton).orElseGet(Singleton::new);
+//        if (singleton == null)
+//            singleton = new Singleton();
         return singleton;
     }
 
@@ -48,8 +60,13 @@ public class Singleton {
         private static final int POOL = 100;
         private static final int CURRENCY_COUNT = 100000;
 
+        @BeforeEach
+        public void beforeEachMethod() {
+            Singleton.singleton = null;
+        }
+
         @Test
-        public void testWithoutConcurrencyAvoid() {
+        public void testWithoutConcurrencyAvoid() throws InterruptedException {
             ExecutorService service = Executors.newFixedThreadPool(POOL);
 
             AtomicReference<Set<String>> atomicSet = new AtomicReference<>(new HashSet<>());
@@ -68,19 +85,14 @@ public class Singleton {
                 });
             }
             service.shutdown();
-
-
-            try {
-                service.awaitTermination(1000, TimeUnit.MILLISECONDS);
-                long end = System.currentTimeMillis();
-                log.info("## ExecutionTime : {}, atomicSet : {}, {}", end - start, atomicSet.get().size(), atomicSet.get());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            service.awaitTermination(10, TimeUnit.SECONDS);
+            long end = System.currentTimeMillis();
+            log.info("## ExecutionTime : {}, atomicSet : {}, {}", end - start, atomicSet.get().size(), atomicSet.get());
+            Assert.assertTrue(atomicSet.get().size() > 1);
         }
 
-        @Test
-        public void testWithConcurrencyNestedSynchronizedCheck() {
+        @RepeatedTest(100)
+        public void testWithConcurrencyNestedSynchronizedCheck() throws InterruptedException {
             ExecutorService service = Executors.newFixedThreadPool(POOL);
 
             AtomicReference<Set<String>> atomicSet = new AtomicReference<>(new HashSet<>());
@@ -100,21 +112,14 @@ public class Singleton {
             }
 
             service.shutdown();
-
-
-            try {
-                while (!service.awaitTermination(1000, TimeUnit.MILLISECONDS)) {
-                    log.info("## a :P {}", "a");
-                }
-                long end = System.currentTimeMillis();
-                log.info("## ExecutionTime : {}, atomicSet : {}, {}", end - start, atomicSet.get().size(), atomicSet.get());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            service.awaitTermination(10, TimeUnit.SECONDS);
+            long end = System.currentTimeMillis();
+            log.info("## ExecutionTime : {}, atomicSet : {}, {}", end - start, atomicSet.get().size(), atomicSet.get());
+            Assert.assertEquals(1, atomicSet.get().size());
         }
 
-        @Test
-        public void testWithConcurrencyAvoidWholeSynchronized() {
+        @RepeatedTest(100)
+        public void testWithConcurrencyAvoidWholeSynchronized() throws InterruptedException {
             ExecutorService service = Executors.newFixedThreadPool(POOL);
 
             AtomicReference<Set<String>> atomicSet = new AtomicReference<>(new HashSet<>());
@@ -133,15 +138,10 @@ public class Singleton {
             }
 
             service.shutdown();
-
-            try {
-                service.awaitTermination(1000, TimeUnit.MILLISECONDS);
-                long end = System.currentTimeMillis();
-                log.info("## ExecutionTime : {}, atomicSet : {}, {}", end - start, atomicSet.get().size(), atomicSet.get());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
+            service.awaitTermination(1000, TimeUnit.MILLISECONDS);
+            long end = System.currentTimeMillis();
+            log.info("## ExecutionTime : {}, atomicSet : {}, {}", end - start, atomicSet.get().size(), atomicSet.get());
+            Assert.assertEquals(1, atomicSet.get().size());
         }
 
     }
