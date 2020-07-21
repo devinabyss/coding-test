@@ -13,7 +13,7 @@ public class JumpCase {
 
     public int jumpCase(int num) {
 
-        return num < 2 ? 1 : jumpCase(num-1) + jumpCase(num-2);
+        return num < 2 ? 1 : jumpCase(num - 1) + jumpCase(num - 2);
 
     }
 

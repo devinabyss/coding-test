@@ -1,8 +1,7 @@
 package datastructure.implemantation;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -55,21 +54,20 @@ public class HashMapTest {
 
 
     @AllArgsConstructor
-    @Getter
-    @ToString
+    @EqualsAndHashCode
     public static class EqualsTrueHashNotEqual {
         private final String propA;
         private final String propB;
 
-        @Override
-        public int hashCode() {
-            return Objects.hash(propA, propB);
-        }
-
-        @Override
-        public boolean equals(Object a) {
-            return true;
-        }
+//        @Override
+//        public int hashCode() {
+//            return Objects.hash(propA, propB);
+//        }
+//
+//        @Override
+//        public boolean equals(Object a) {
+//            return true;
+//        }
 
         @Override
         public String toString() {
@@ -78,8 +76,6 @@ public class HashMapTest {
     }
 
     @AllArgsConstructor
-    @Getter
-    @ToString
     public static class EqualsTrueHashEqual {
         private final String propA;
         private final String propB;
@@ -101,8 +97,6 @@ public class HashMapTest {
     }
 
     @AllArgsConstructor
-    @Getter
-    @ToString
     public static class EqualsFalseHashEqual {
         private final String propA;
         private final String propB;

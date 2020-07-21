@@ -10,7 +10,7 @@ public class CountDiv {
     public int solution(int A, int B, int K) {
         int minus = B - A;
         int div = minus / K;
-        int result = (A % K == 0) || (A < K && minus > K) || (B % K == 0)  ? div + 1 : div;
+        int result = (A % K == 0) || (A < K && minus > K) || (B % K == 0) ? div + 1 : div;
         return result;
     }
 

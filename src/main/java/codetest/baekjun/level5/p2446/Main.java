@@ -13,7 +13,7 @@ public class Main {
         }
 
 
-        for (int i = number -2; i >= 0; i--) {
+        for (int i = number - 2; i >= 0; i--) {
             sb.append(star(number, i)).append("\n");
         }
 
@@ -30,8 +30,8 @@ public class Main {
 
         }
 
-        for (int i=0; i< number - 1; i++){
-            sb.append(number - space - 1> i ? "*" : "");
+        for (int i = 0; i < number - 1; i++) {
+            sb.append(number - space - 1 > i ? "*" : "");
         }
 
 

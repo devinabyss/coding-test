@@ -8,7 +8,7 @@ import java.util.Optional;
 
 /**
  * https://app.codility.com/demo/results/trainingKVGNQ4-UN3/
- *
+ * <p>
  * Created by HK on 2018-04-20.
  */
 public class OddOccurrencesInArray {

@@ -20,7 +20,7 @@ public class Main {
         String result = sb.toString();
 
         System.out.println(result.trim());
-        
+
     }
 
     public static String star(int number) {

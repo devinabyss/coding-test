@@ -13,9 +13,9 @@ public class SumMatrix {
         int[][] answer = new int[A.length][A[0].length];
 
 
-        for (int i =0; i < A.length; i++){
+        for (int i = 0; i < A.length; i++) {
 
-            for (int j = 0; j < A[i].length; j ++) {
+            for (int j = 0; j < A[i].length; j++) {
 
                 answer[i][j] = A[i][j] + B[i][j];
 

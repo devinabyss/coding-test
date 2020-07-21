@@ -25,7 +25,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         int count = Integer.parseInt(scanner.nextLine());
 
-        for (int i = 0 ; i < count; i++) {
+        for (int i = 0; i < count; i++) {
             String[] test = scanner.nextLine().split("\\s");
             System.out.println(solve(Integer.parseInt(test[0]), Integer.parseInt(test[1]), Integer.parseInt(test[2])));
         }

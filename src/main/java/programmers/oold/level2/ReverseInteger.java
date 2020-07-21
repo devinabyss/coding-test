@@ -6,12 +6,11 @@ package programmers.oold.level2;
 public class ReverseInteger {
 
 
-
     public int reverseInt(int n) {
 
         String origin = String.valueOf(n);
         StringBuilder sb = new StringBuilder();
-        origin.chars().sorted().forEach(character -> sb.replace(0, sb.length(), Character.valueOf((char)character) + sb.toString()));
+        origin.chars().sorted().forEach(character -> sb.replace(0, sb.length(), Character.valueOf((char) character) + sb.toString()));
 
 //        String str = String.valueOf(n);
 //
@@ -30,7 +29,6 @@ public class ReverseInteger {
 
         return Integer.valueOf(sb.toString());
     }
-
 
 
     public void sort(int[] array) {

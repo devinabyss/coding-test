@@ -7,7 +7,6 @@ import java.util.Arrays;
 
 /**
  * 2차 정렬이 안되고 있는 상태. 아 괜히 재귀로 했다.
- *
  */
 @Slf4j
 public class HardDisk {
@@ -19,7 +18,6 @@ public class HardDisk {
         int prev = (jobs[0][0] > start) ? jobs[0][0] - start : 0;
         int totalTime = prev + jobs[0][1] + start;
         int pivot = totalTime - (jobs[0][0]);
-
 
 
         //int pivot = jobs[0][1];
@@ -37,11 +35,11 @@ public class HardDisk {
 //        log.info("## prev : {}", Arrays.deepToString(prevJobs));
 //        log.info("## after : {}", Arrays.deepToString(afterJobs));
 
-        return sumOfAccessTime(prevJobs, totalTime) + sumOfAccessTime(afterJobs, Arrays.stream(prevJobs).mapToInt(a -> a[1]).sum()+totalTime) + pivot;
+        return sumOfAccessTime(prevJobs, totalTime) + sumOfAccessTime(afterJobs, Arrays.stream(prevJobs).mapToInt(a -> a[1]).sum() + totalTime) + pivot;
     }
 
     public int solution(int[][] jobs) {
-        Arrays.sort(jobs, (a, b) -> (Integer.compare(a[0], b[0])== 0) ? Integer.compare(a[1],b[1]) : (Integer.compare(a[0], b[0])));
+        Arrays.sort(jobs, (a, b) -> (Integer.compare(a[0], b[0]) == 0) ? Integer.compare(a[1], b[1]) : (Integer.compare(a[0], b[0])));
 //        int prev = sumOfAccessTime(jobs, 0);
 //        int after = sumOfAccessTime(jobs, prev);
         int sum = sumOfAccessTime(jobs, 0);

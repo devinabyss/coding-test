@@ -29,7 +29,7 @@ public class CardDropScore {
         }
 
 
-        int result = Math.max(sol(left, right, cache, leftIdx-1, rightIdx-1), sol(left, right, cache, leftIdx-1, rightIdx));
+        int result = Math.max(sol(left, right, cache, leftIdx - 1, rightIdx - 1), sol(left, right, cache, leftIdx - 1, rightIdx));
         cache[leftIdx][rightIdx] = result;
 
 

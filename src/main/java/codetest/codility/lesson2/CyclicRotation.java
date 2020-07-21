@@ -7,9 +7,8 @@ import java.util.stream.Collectors;
 
 
 /**
- *
  * Created by HK on 2018-04-11.
- *
+ * <p>
  * https://app.codility.com/demo/results/trainingYY625P-W6K/
  */
 public class CyclicRotation {

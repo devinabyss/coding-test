@@ -51,7 +51,6 @@ public class ValidString {
         }
 
 
-
         logger.info("## counts2.keySet().stream().min(Integer::compareTo)) : {}, {}", counts2.keySet().stream().min(Integer::compareTo), counts2.get(counts2.keySet().stream().min(Integer::compareTo).get()));
 
         if (Optional.ofNullable(counts2.get(counts2.keySet().stream().min(Integer::compareTo).get())).orElse(0) > 1) {

@@ -7,12 +7,12 @@ import java.util.List;
 /**
  * 문제 : 완주하지 못한 선수
  * 카테고리 : 해시
- *
+ * <p>
  * 문제 설명
  * 수많은 마라톤 선수들이 마라톤에 참여하였습니다. 단 한 명의 선수를 제외하고는 모든 선수가 마라톤을 완주하였습니다.
- *
+ * <p>
  * 마라톤에 참여한 선수들의 이름이 담긴 배열 participant와 완주한 선수들의 이름이 담긴 배열 completion이 주어질 때, 완주하지 못한 선수의 이름을 return 하도록 solution 함수를 작성해주세요.
- *
+ * <p>
  * 제한사항
  * 마라톤 경기에 참여한 선수의 수는 1명 이상 100,000명 이하입니다.
  * completion의 길이는 participant의 길이보다 1 작습니다.
@@ -36,7 +36,7 @@ public class FailedPlayer {
         return participant[participant.length - 1];
     }
 
-    public static String recursionMain(String[] participant, String[] completion){
+    public static String recursionMain(String[] participant, String[] completion) {
         Arrays.sort(participant);
         Arrays.sort(completion);
 
@@ -51,7 +51,7 @@ public class FailedPlayer {
         }
 
 
-        boolean isSame = participant[index].equals( completion[index]) ;
+        boolean isSame = participant[index].equals(completion[index]);
 
         if (index == 100) {
             throw new RuntimeException("AA");
@@ -61,7 +61,7 @@ public class FailedPlayer {
 //            throw new RuntimeException("AA");
 //        }
 
-        return isSame ? recursion(participant, completion, ++index ) : participant[index];
+        return isSame ? recursion(participant, completion, ++index) : participant[index];
     }
 
     public static String[] getCompletion(int length) {

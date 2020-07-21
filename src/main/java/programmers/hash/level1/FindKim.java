@@ -9,9 +9,8 @@ public class FindKim {
         int x = 0;
 
 
-
-        for (int i = 0; i < seoul.length; i++ ){
-            if (seoul[i].equals("Kim")){
+        for (int i = 0; i < seoul.length; i++) {
+            if (seoul[i].equals("Kim")) {
                 x = i;
                 break;
             }

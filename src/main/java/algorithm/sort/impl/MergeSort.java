@@ -5,78 +5,78 @@ import algorithm.sort.Sort;
 
 public class MergeSort extends Sort {
 
-	@Override
-	public void sort(int[] array) {
+    @Override
+    public void sort(int[] array) {
 
-		if (array.length > 1) {
+        if (array.length > 1) {
 
-			sort(array, 0, array.length - 1);
+            sort(array, 0, array.length - 1);
 
-		}
-	}
+        }
+    }
 
-	private void sort(int[] array, int low, int high) {
+    private void sort(int[] array, int low, int high) {
 
-		if (low < high) {
+        if (low < high) {
 
-			int mid = low + ((high - low) / 2);
+            int mid = low + ((high - low) / 2);
 
-			sort(array, low, mid);
-			sort(array, mid + 1, high);
+            sort(array, low, mid);
+            sort(array, mid + 1, high);
 
-			merge(array, low, high, mid);
-		}
+            merge(array, low, high, mid);
+        }
 
-	}
+    }
 
-	private void merge(int[] array, int low, int high, int mid) {
+    private void merge(int[] array, int low, int high, int mid) {
 
-		//logger.debug("Array : {}, EACH SIZE : {}, LOW : {}, HIGH : {}, MID : {}", array, mid - low + 1, low, high, mid);
+        //logger.debug("Array : {}, EACH SIZE : {}, LOW : {}, HIGH : {}, MID : {}", array, mid - low + 1, low, high, mid);
 
-		int leftSize = mid - low + 1;
-		int rightSize = high - mid;
+        int leftSize = mid - low + 1;
+        int rightSize = high - mid;
 
-		int newSize = leftSize + rightSize;
+        int newSize = leftSize + rightSize;
 
-		int leftPos = low;
-		int rightPos = mid + 1;
+        int leftPos = low;
+        int rightPos = mid + 1;
 
-		int[] temp = new int[newSize];
-		int tempPos = 0;
+        int[] temp = new int[newSize];
+        int tempPos = 0;
 
-		//logger.debug("TEMP SIZE : {}, LEFT POS : {}, RIGHT POS : {}", newSize, leftPos, rightPos);
+        //logger.debug("TEMP SIZE : {}, LEFT POS : {}, RIGHT POS : {}", newSize, leftPos, rightPos);
 
-		
-		while (tempPos < newSize) {
 
-			if (leftPos <= mid && rightPos <= high) {
-				if (array[leftPos] < array[rightPos]) {
+        while (tempPos < newSize) {
 
-					temp[tempPos] = array[leftPos];
-					leftPos++;
-				} else {
-					temp[tempPos] = array[rightPos];
-					rightPos++;
-				}
-			} else if (leftPos <= mid) {
-				temp[tempPos] = array[leftPos];
-				leftPos++;
+            if (leftPos <= mid && rightPos <= high) {
+                if (array[leftPos] < array[rightPos]) {
 
-			} else {
-				temp[tempPos] = array[rightPos];
-				rightPos++;
-			}
+                    temp[tempPos] = array[leftPos];
+                    leftPos++;
+                } else {
+                    temp[tempPos] = array[rightPos];
+                    rightPos++;
+                }
+            } else if (leftPos <= mid) {
+                temp[tempPos] = array[leftPos];
+                leftPos++;
 
-			tempPos++;
-		}
+            } else {
+                temp[tempPos] = array[rightPos];
+                rightPos++;
+            }
 
-		tempPos = 0;
+            tempPos++;
+        }
 
-		for (int i = low; i <= high; i++) {
-			array[i] = temp[tempPos];
-			tempPos++;
-		}
+        tempPos = 0;
 
-	}
+        for (int i = low; i <= high; i++) {
+            array[i] = temp[tempPos];
+            tempPos++;
+        }
+
+    }
 
 }

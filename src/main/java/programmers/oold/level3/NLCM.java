@@ -17,7 +17,7 @@ public class NLCM {
 //        return  result;
 //    }
 
-    public long gcd(long num1, long num2){
+    public long gcd(long num1, long num2) {
         while (num2 > 0) {
             long temp = num2;
             num2 = num1 % num2;

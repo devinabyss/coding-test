@@ -9,14 +9,10 @@ import java.util.Arrays;
 public class HelpBoat {
 
 
-
-
-
-
     public int solution(int[] people, int limit) {
         Arrays.sort(people);
         int min = 0;
-        int max = people.length-1;
+        int max = people.length - 1;
         int count = 0;
         while (min <= max) {
             if (people[min] + people[max] > limit) {
@@ -33,7 +29,7 @@ public class HelpBoat {
     }
 
     @Test
-    public void test(){
+    public void test() {
 
         log.info("## Result : {}", solution(new int[]{70, 50, 80, 50}, 100));
     }
