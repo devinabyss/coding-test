@@ -15,6 +15,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.locks.ReentrantLock;
 
 @Slf4j
 public class Singleton {
@@ -23,10 +24,28 @@ public class Singleton {
     }
 
     public static Singleton singleton;
+    private static final ReentrantLock lock = new ReentrantLock();
 
     public static Singleton getInstanceWithoutConcurrencyAvoid() {
         singleton = Optional.ofNullable(singleton).orElseGet(Singleton::new);
         return singleton;
+    }
+
+    public static Singleton getInstanceWithNestedReentrantLock() {
+
+        singleton = Optional.ofNullable(singleton).orElseGet(
+                () -> {
+                    lock.lock();
+                    try {
+                        return Optional.ofNullable(singleton).orElseGet(Singleton::new);
+                    } finally {
+                        lock.unlock();
+                    }
+                }
+        );
+
+        return singleton;
+
     }
 
     public static Singleton getInstanceWithConcurrencyNestedSyncrhronizedCheck() {
@@ -129,6 +148,32 @@ public class Singleton {
             for (int i = 0; i < CURRENCY_COUNT; i++) {
                 service.submit(() -> {
                     Singleton singleton = Singleton.getInstanceWithConcurrencyAvoidWholeSynchronized();
+                    atomicSet.getAndUpdate(current -> {
+                        Set<String> newSet = new HashSet<>(current);
+                        newSet.add(singleton.toString());
+                        return newSet;
+                    });
+                });
+            }
+
+            service.shutdown();
+            service.awaitTermination(1000, TimeUnit.MILLISECONDS);
+            long end = System.currentTimeMillis();
+            log.info("## ExecutionTime : {}, atomicSet : {}, {}", end - start, atomicSet.get().size(), atomicSet.get());
+            Assert.assertEquals(1, atomicSet.get().size());
+        }
+
+        @RepeatedTest(100)
+        public void testWithConcurrencyNestedReentrantLock() throws InterruptedException {
+            ExecutorService service = Executors.newFixedThreadPool(POOL);
+
+            AtomicReference<Set<String>> atomicSet = new AtomicReference<>(new HashSet<>());
+
+            long start = System.currentTimeMillis();
+
+            for (int i = 0; i < CURRENCY_COUNT; i++) {
+                service.submit(() -> {
+                    Singleton singleton = Singleton.getInstanceWithNestedReentrantLock();
                     atomicSet.getAndUpdate(current -> {
                         Set<String> newSet = new HashSet<>(current);
                         newSet.add(singleton.toString());
