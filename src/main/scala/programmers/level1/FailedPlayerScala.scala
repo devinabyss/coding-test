@@ -1,4 +1,4 @@
-package programmers.level1
+package codetest.programmers.level1
 
 object FailedPlayerScala {
 

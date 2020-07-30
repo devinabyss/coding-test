@@ -11,9 +11,9 @@ import java.util.List;
 
 public class SortTest {
 
-    private static SecureRandom random = new SecureRandom();
+    private static final SecureRandom random = new SecureRandom();
 
-    private static Logger logger = LoggerFactory.getLogger(SortTest.class);
+    private static final Logger logger = LoggerFactory.getLogger(SortTest.class);
 
     public static void main(String[] args) {
 
